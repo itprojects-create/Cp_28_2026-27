@@ -1,0 +1,99 @@
+@import 'tailwindcss';
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+:root {
+  font: 100%/1.5 var(--font-sans);
+
+  /* WARM EDITORIAL MINIMALISM DESIGN SYSTEM (UISkill.md) */
+  --canvas: #F7F5F0;
+  --canvas-warm: #F2F0EA;
+
+  --surface: #FFFFFF;
+  --surface-elevated: #FAFAF9;
+
+  --text-primary: #1C1917; /* stone-900 */
+  --text-secondary: #78716C; /* stone-500 */
+  --text-muted: #A8A29E; /* stone-400 */
+
+  --border: #E7E5E4; /* stone-200 */
+  --border-subtle: #F5F5F4; /* stone-100 */
+  --border-strong: rgba(0, 0, 0, 0.12);
+
+  --accent: #BFDBFE; /* blue-200 */
+  --accent-action: #93C5FD; /* blue-300 */
+  --accent-focus: #60A5FA; /* blue-400 */
+  --accent-text: #1E40AF; /* blue-800 */
+
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+
+  --shadow-card: 0 1px 3px rgba(0,0,0,0.04);
+  --shadow-soft: 0 4px 12px rgba(0,0,0,0.05);
+
+  --scrollbar-thumb: #D6D3D1;
+  --scrollbar-hover: #A8A29E;
+}
+
+@layer base {
+  body {
+    background-color: var(--canvas) !important;
+    color: var(--text-primary) !important;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Editorial Scale & Typography */
+  h1, h2, h3 {
+    letter-spacing: -0.025em;
+    color: var(--text-primary);
+  }
+
+  /* Structural UI borders & Surfaces override for dark hardcoded classes */
+  .bg-\[\#0a0a0c\], .bg-\[\#0B0B0E\], .bg-\[\#111114\], .bg-\[\#13131A\] {
+    background-color: var(--canvas) !important;
+  }
+
+  /* Interactive elements press feedback */
+  button, a, .btn, [role="button"] {
+    transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease;
+  }
+
+  input, textarea {
+    background-color: #FFFFFF !important;
+    border: 1px solid var(--border) !important;
+    color: var(--text-primary) !important;
+    border-radius: var(--radius-md) !important;
+  }
+
+  input:focus, textarea:focus {
+    border-color: var(--text-primary) !important;
+    outline: none !important;
+    box-shadow: 0 0 0 2px var(--accent) !important;
+  }
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-hover);
+}

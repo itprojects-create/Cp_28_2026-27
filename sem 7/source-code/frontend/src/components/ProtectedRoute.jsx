@@ -1,0 +1,18 @@
+import React from 'react';
+import { Navigate } from 'react-router-dom';
+import { useAuth } from '../hooks/useAuth';
+
+export const ProtectedRoute = ({ children, requiredRole = null }) => {
+  const { isAuthenticated, role } = useAuth();
+
+  if (!isAuthenticated) {
+    return <Navigate to="/login" replace />;
+  }
+
+  // Allow superadmin to bypass role checks, or explicitly check for requiredRole
+  if (requiredRole && role !== requiredRole && role !== 'superadmin') {
+    return <Navigate to="/dashboard" replace />;
+  }
+
+  return children;
+};

@@ -1,0 +1,49 @@
+from pydantic_settings import BaseSettings, SettingsConfigDict
+from typing import Optional
+
+class Settings(BaseSettings):
+    # Nvidia NIM / OpenAI
+    NVIDIA_API_KEY: str
+    NVIDIA_MODEL_NAME: str = "meta/llama3-70b-instruct"
+
+    # PostgreSQL
+    DATABASE_URL: str
+
+    # JWT Auth
+    JWT_SECRET_KEY: str
+    JWT_ALGORITHM: str = "HS256"
+    JWT_EXPIRY_MINUTES: int = 480
+
+    # Gmail SMTP
+    GMAIL_ADDRESS: str
+    GMAIL_APP_PASSWORD: str
+
+    # HR Email
+    HR_EMAIL: str
+
+    # ChromaDB
+    CHROMA_PERSIST_DIRECTORY: str = "./chroma_db"
+    CHROMA_COLLECTION_NAME: str = "one_knowledge_base"
+
+    # GitHub
+    GITHUB_TOKEN: Optional[str] = None
+    GITHUB_CLIENT_ID: Optional[str] = None
+    GITHUB_CLIENT_SECRET: Optional[str] = None
+    GITHUB_TARGET_REPO: Optional[str] = "O.N.E"
+
+    # App
+    APP_ENV: str = "development"
+    FRONTEND_URL: str = "http://localhost:5173"
+
+    # Hermes Agent
+    HERMES_API_URL: str = "http://localhost:8642/v1/chat/completions"
+    HERMES_API_KEY: str = "hermes-local-key"
+    HERMES_MAX_TOKENS: int = 4096
+
+    model_config = SettingsConfigDict(
+        env_file=".env",
+        extra="ignore",
+        case_sensitive=False
+    )
+
+settings = Settings()
